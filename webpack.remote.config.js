@@ -1,5 +1,4 @@
 const ModuleFederationPlugin = require("webpack/lib/container/ModuleFederationPlugin");
-const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
 const shellConfig = {
   entry: ["./src/app/strategy/custom.strategy.ts"],
@@ -23,10 +22,9 @@ const shellConfig = {
     ]
   },
   plugins: [
-    new CleanWebpackPlugin(),
     new ModuleFederationPlugin({
       name: "strategy",
-      library: { type: "var", name: "mfe1" },
+      library: { type: "var", name: "strategy" },
       filename: "remoteEntry.js",
       exposes: {
         Strategy: './src/app/strategy/custom.strategy.ts',

@@ -5,8 +5,158 @@ import { Strategy } from './strategy/strategy';
 
 @Component({
   selector: 'ngx-snake',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css'],
+  template: `
+<div class="game-container">
+  <div class="game-header">
+    <h3 class="logo">ngx-Snake</h3>
+    <div class="score-block">
+      <h3 class="score" [ngClass]="{'new-best-score': newBestScore}">Score: {{score}}</h3>
+      <h3 class="best-score" [ngClass]="{'new-best-score': newBestScore}">Best Score: {{best_score}}</h3>
+    </div>
+  </div>
+  <div class="row" *ngFor="let column of board; let i = index;">
+    <div class="column" [ngStyle]="{'background-color': setColors(i, j)}" *ngFor="let row of column; let j = index"></div>
+  </div>
+  <div class="start-button" [ngClass]="{'disable-clicks': gameStarted}" (click)="showMenu()">Start Game</div>
+  <div class="new-game-menu" *ngIf="showMenuChecker">
+    <span class="new-game-menu-label">Select Mode</span>
+    <div class="start-button new-game-button" (click)="newGame(mode)" *ngFor="let mode of getKeys(all_modes)">{{all_modes[mode]}}</div>
+  </div>
+</div>
+  `,
+  styles: [`
+  .game-header {
+    color: #fff;
+    padding: 5px 15px 5px 0px;
+    position: relative;
+  }
+  
+  .game-header>.score-block {
+    display: inline-block;
+  }
+  
+  .score-block>.score {
+    position: absolute;
+    right: 8px;
+    top: -5px;
+  }
+  
+  .score-block>.best-score {
+    position: absolute;
+    right: 8px;
+    margin-top: 5px;
+    font-size: 12px;
+  }
+  
+  .game-header>.logo {
+    display: inline-block;
+    padding-left: 15px;
+  }
+  
+  .game-container {
+    width: 468px;
+    position: relative;
+    display: block;
+    margin: auto;
+    background-color: #47565A;
+    box-shadow: 0 19px 38px rgba(0, 0, 0, 0.30), 0 15px 12px rgba(0, 0, 0, 0.22);
+    border-radius: 5px;
+  }
+  
+  .row {
+    height: 26px;
+  }
+  
+  .column {
+    border: 1px solid rgba(97, 131, 138, .1);
+    width: 24px;
+    height: 24px;
+    display: inline-block;
+  }
+  
+  .start-button {
+    padding: 15px;
+    text-align: center;
+    background-color: #47565A;
+    color: white;
+    border-radius: 5px;
+  }
+  
+  .start-button:hover {
+    opacity: 0.65;
+    cursor: pointer;
+  }
+  
+  .start-button.new-game-button {
+    margin: 0 105px 4px 105px;
+  }
+  
+  .disable-clicks {
+    pointer-events: none;
+  }
+  
+  .new-game-menu {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    bottom: 0;
+    padding: 40% 0;
+    text-align: center;
+    background: rgba(0, 0, 0, 0.15);
+  }
+  
+  .new-game-menu-label {
+    font-size: 1.17em;
+    margin-bottom: 13px;
+    display: block;
+    color: #fff;
+  }
+  
+  .new-best-score {
+    animation: glow .5s infinite alternate;
+  }
+  
+  @keyframes glow {
+    to {
+      text-shadow: 0 0 15px #ffff00;
+    }
+  }
+  
+  @media screen and (max-width: 480px) {
+    .game-container {
+      width: 100%;
+    }
+    .column {
+      width: 5.55%;
+      height: 0;
+      padding-bottom: 5.06%;
+      box-sizing: border-box;
+    }
+    .row {
+      display: -webkit-box;
+      display: -moz-box;
+      display: -ms-flexbox;
+      display: -webkit-flex;
+      display: flex;
+      height: 0;
+      padding-bottom: 5.5%;
+    }
+    .new-game-menu {
+      width: 100%;
+      top: 8px;
+      padding-top: 30%;
+      font-size: 80%;
+    }
+    .start-button.new-game-button {
+      margin: 0 15% 1% 15%;
+    }
+    @-moz-document url-prefix() {
+      .column {
+        min-height: 5.5vw;
+      }
+    }
+  }
+  `],
   host: {
     '(document:keydown)': 'handleKeyboardEvents($event)'
   }
@@ -49,7 +199,8 @@ export class AppComponent {
   ) {
     this.setBoard();
 
-    import('./strategy/custom.strategy')
+    // import('./strategy/custom.strategy')
+    import('strategy/Strategy')
       .then(m => {
         this.strategy = new m.CustomStrategy();
       })

@@ -6,7 +6,6 @@ export class CustomStrategy implements Strategy {
     private current = SnakeDirection.left;
 
     step(context: Context): SnakeDirection {
-
         const min = SnakeDirection.left;
 
         this.steps++;
