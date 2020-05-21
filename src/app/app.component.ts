@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { BestScoreManager } from './app.storage.service';
 import { CONTROLS, COLORS, BOARD_SIZE, GAME_MODES } from './app.constants';
+import { Strategy } from './strategy/strategy';
 
 @Component({
   selector: 'ngx-snake',
@@ -41,13 +42,28 @@ export class AppComponent {
     y: -1
   };
 
+  private strategy: Strategy = null;
+
   constructor(
-    private bestScoreService: BestScoreManager
+    private bestScoreService: BestScoreManager,
   ) {
     this.setBoard();
+
+    import('./strategy/custom.strategy')
+      .then(m => {
+        this.strategy = new m.CustomStrategy();
+      })
+      .catch(err => {
+        console.error('error loading strategy', err);
+      });
   }
 
   handleKeyboardEvents(e: KeyboardEvent) {
+
+    if (this.strategy) {
+      return;
+    }
+
     if (e.keyCode === CONTROLS.LEFT && this.snake.direction !== CONTROLS.RIGHT) {
       this.tempDirection = CONTROLS.LEFT;
     } else if (e.keyCode === CONTROLS.UP && this.snake.direction !== CONTROLS.DOWN) {
@@ -76,6 +92,15 @@ export class AppComponent {
   };
 
   updatePositions(): void {
+
+    if (this.strategy) {
+      this.tempDirection = this.strategy.step({
+        fruit: this.fruit,
+        obstacles: this.obstacles,
+        snake: this.snake
+      });
+    }
+
     let newHead = this.repositionHead();
     let me = this;
 
