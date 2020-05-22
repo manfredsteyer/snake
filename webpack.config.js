@@ -39,7 +39,7 @@ const shellConfig = {
   ],
   output: {
     publicPath: "https://manfredsteyer.github.io/snake/",
-    filename: "[id].[name].js",
+    filename: "[name].js",
     path: __dirname + "/dist/strategy",
     chunkFilename: "[id].[chunkhash].js"
   },
