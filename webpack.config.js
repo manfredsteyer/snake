@@ -1,5 +1,6 @@
 const ModuleFederationPlugin = require("webpack/lib/container/ModuleFederationPlugin");
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+const CopyPlugin = require('copy-webpack-plugin');
 
 const shellConfig = {
   entry: ["./src/app/strategy/custom.strategy.ts"],
@@ -32,6 +33,9 @@ const shellConfig = {
         Strategy: './src/app/strategy/custom.strategy.ts',
       }
     }),
+    new CopyPlugin([
+      { from: 'public', to: '' },
+    ]),      
   ],
   output: {
     publicPath: "http://localhost:3000/",
