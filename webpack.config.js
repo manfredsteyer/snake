@@ -33,12 +33,12 @@ const shellConfig = {
         Strategy: './src/app/strategy/custom.strategy.ts',
       }
     }),
-    new CopyPlugin([
+    new CopyPlugin({ patterns: [
       { from: 'public', to: '' },
-    ]),      
+    ]}),      
   ],
   output: {
-    publicPath: "http://localhost:3000/",
+    publicPath: "https://manfredsteyer.github.io/snake/",
     filename: "[id].[name].js",
     path: __dirname + "/dist/strategy",
     chunkFilename: "[id].[chunkhash].js"
