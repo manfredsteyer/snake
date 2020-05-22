@@ -10,11 +10,10 @@ export class CustomStrategy implements Strategy {
 
         this.steps++;
 
-        if (this.steps % 10 === 0) {
-            const newDirection = Math.floor(Math.random() * 1000) % 4 + min;
-
-            if (Math.abs(newDirection - this.current) !== 2) {
-                this.current = newDirection;
+        if (this.steps % 5 === 0) {
+            this.current++;
+            if (this.current > SnakeDirection.down) {
+                this.current = SnakeDirection.left;
             }
         }
 

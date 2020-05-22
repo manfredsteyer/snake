@@ -21,11 +21,11 @@
     const remoteUrl = prompt('Enter your strategy\'s URL', defaultURL);
 
     const remote = document.createElement('script');
-    remote.src = defaultURL + '/remoteEntry.js';
+    remote.src = remoteUrl + '/remoteEntry.js';
     document.body.appendChild(remote);
 
     const main = document.createElement('script');
-    main.src = defaultURL + '/main.js';
+    main.src = 'main.js';
     document.body.appendChild(main);
 
   </script>
