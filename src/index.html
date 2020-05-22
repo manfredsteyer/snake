@@ -15,8 +15,22 @@
   <ngx-snake>Loading...</ngx-snake>
 
 
-  <script src="http://localhost:3000/remoteEntry.js"></script>
+  <script>
 
+    const defaultURL = 'https://manfredsteyer.github.io/snake';
+    const remoteUrl = prompt('Enter your strategy\'s URL', defaultURL);
+
+    const remote = document.createElement('script');
+    remote.src = defaultURL + '/remoteEntry.js';
+    document.body.appendChild(remote);
+
+    const main = document.createElement('script');
+    main.src = defaultURL + '/main.js';
+    document.body.appendChild(main);
+
+  </script>
+
+  
 </body>
 
 </html>

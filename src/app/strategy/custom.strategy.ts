@@ -10,7 +10,7 @@ export class CustomStrategy implements Strategy {
 
         this.steps++;
 
-        if (this.steps % 3 === 0) {
+        if (this.steps % 10 === 0) {
             const newDirection = Math.floor(Math.random() * 1000) % 4 + min;
 
             if (Math.abs(newDirection - this.current) !== 2) {

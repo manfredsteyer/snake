@@ -37,9 +37,13 @@ const shellConfig = {
     // new CopyPlugin([
     //   { from: 'projects/shell/src/assets', to: 'assets' },
     // ]),    
-    new HtmlWebpackPlugin({
-      template: "./src/index.html"
-    })
+    // new HtmlWebpackPlugin({
+    //   template: "./src/index.html"
+    // })
+    new CopyPlugin([
+      { from: './src/index.html', to: '' },
+    ]),    
+ 
   ],
   output: {
     filename: "[name].js",
