@@ -17,8 +17,14 @@
 
   <script>
 
+
+    const message = `Enter your strategy\'s URL
+
+**DISCLAIMER**: In real world, please only load plugins from __trusted origins__ into your apps!
+    `;
+
     const defaultURL = 'https://manfredsteyer.github.io/snake';
-    const remoteUrl = prompt('Enter your strategy\'s URL', defaultURL);
+    const remoteUrl = prompt(message, defaultURL);
 
     const remote = document.createElement('script');
     remote.src = remoteUrl + '/remoteEntry.js';
