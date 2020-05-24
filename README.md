@@ -14,11 +14,11 @@ Big thanks for this nice example!
 
 
 ## Goal
-The goal of this contest is to write a strategy navigating the snake. Maximize the amount of fruits it is eating during the **first 500 moves**.
+The goal of this contest is to write a strategy navigating the snake. Maximize the amount of fruits it is eating during the **first 500 moves**:
 
-In the case of a tie after 500 moves, we will increase this limit.
+- In the case of a tie after 500 moves, we will increase this limit.
 
-The **game mode** used for the evaluation is ``Obstacles`` (just play the Game to find out what this means ;-)).
+- The **game mode** used for the evaluation is ``Obstacles`` (just play the Game to find out what this means ;-)).
 
 ## Get into the right mood
 
@@ -130,3 +130,6 @@ Fill out [this form](https://tinyurl.com/federation-challenge) until Thu, June, 
 
 https://tinyurl.com/federation-challenge
 
+## Award Ceremony
+
+The Award Ceremony takes place during the next [ngCopenhagen Meetup](https://www.meetup.com/de-DE/ngCopenhagen/events/270827005). There, we'll present the best 3 received strategies. 
