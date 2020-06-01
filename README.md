@@ -79,7 +79,18 @@ To take part in this challenge, you need to **fork** this repository:
 
 ## After coding: Publish your solution
 
-1. Commit and push the source code to your repo:
+1. **Important**: Open your ``webpack.config.js`` and adjust the public path to reflect your GitHub user name:
+
+	```javascript
+	output: {
+		publicPath: "https://manfredsteyer.github.io/snake/",
+		[...]
+	}
+	```
+
+	**Remarks:** Here, we are using beta 16 of webpack 5 and Module Federation. This version demands us to define where the remote will be hosted. In future versions, this won't be necessary. 
+
+2. Commit and push the source code to your repo:
    
    ```
    git add *
